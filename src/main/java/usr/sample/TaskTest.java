@@ -13,6 +13,7 @@ public class TaskTest {
 
     private Logger logger = Logger.getLogger(TaskTest.class);
 
+    @Autowired
     SampleDao sampleDao;
 
     public void setSampleDao(SampleDao sampleDao) {

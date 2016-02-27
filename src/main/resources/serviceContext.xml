@@ -8,6 +8,8 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
     <jaxws:endpoint implementor="usr.sample.SampleServiceImpl" address="/sample"/>
 
     <bean
@@ -19,18 +21,16 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://localhost:5432" />
+        <!--property name="url" value="jdbc:postgresql://localhost:5432" /-->
+        <property name="url" value="jdbc:postgresql://localhost:5432/testdb1" />
         <property name="username" value="postgres" />
         <property name="password" value="a1" />
     </bean>
 
-    <bean id="sampleDao" class="usr.sample.dao.SampleDao">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
+    <bean id="sampleDao" class="usr.sample.dao.SampleDao" />
 
     <bean id="taskTest" class="usr.sample.TaskTest">
         <property name="str" value="${abc}" />
-        <property name="sampleDao" ref="sampleDao" />
     </bean>
 
     <task:scheduled-tasks>
